@@ -1,0 +1,150 @@
+{% extends 'pages/base.html' %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Group loan</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Group loan</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <!--messages-->
+      {% include 'message.html' %}
+      <!--messages-->
+      <!--row2 starts-->
+
+      <div class="alert alert-success p-2" style="opacity: .7">
+        <p>Group lending informations</p>
+       </div>
+      <div class="row">
+        <div class="col-md-12">
+            
+           <div class="card shadow">
+            <div class="card-header">
+                
+
+            </div>
+            <div class="card-body">
+                  
+                <!--card info-->
+                <h4 class="text text-white bg-secondary p-2"> <b>Group lending informations and application Status</b> </h4>
+               
+                {% if details %}
+                <div class="container">
+                    <div class="card">
+                        <div class="card-body p-2">
+                            <div class="row">
+                               
+                              <div class="col-md-3">
+                                <p><b>Group Name:</b> {{ details.group_name }}</p>
+                              </div>
+
+                              <div class="col-md-3">
+                                <p><b>Members:</b></p>
+                                <ul>
+                                  {% for member in details.members.all %}
+                                      <li>{{ member.first_name }} {{ member.last_name }}</li>
+                                  {% endfor %}
+                              </ul>
+                            </div>
+                               
+                                <div class="col-md-3">
+                                    <p><b>Phone Number:</b> {{ details.phone_number }}</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <p><b>Referee:</b></p>
+                                      <ul>
+                                        {% for referee in details.referee.all %}
+                                            <li>{{ referee.first_name }} {{ referee.last_name }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                            
+                              <div class="col-md-3">
+                                <p><b>Branch:</b> {{ details.branch.name }}</p>
+                            </div>
+
+                                <div class="col-md-3">
+                                    <p><b>Amount:</b> Tsh {{ details.amount }}</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <p><b>Returned Amount:</b> Tsh {{ details.returned_amount }}</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <p><b>Interest:</b> Tsh {{ details.interest }}</p>
+                                </div>
+
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p><b>Lending Date:</b> {{ details.lending_date }}</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <p><b>Date of Return:</b> {{ details.date_of_return }}</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <!-- Display status badge with different colors -->
+                                    {% if details.status == "pending" %}
+                                    <p><span class="badge bg-warning text-dark">{{ details.status }}</span></p>
+                                    {% elif details.status == "approved" %}
+                                    <p><span class="badge bg-success">{{ details.status }}</span></p>
+                                    {% elif details.status == "rejected" %}
+                                    <p><span class="badge bg-danger">{{ details.status }}</span></p>
+                                    {% elif details.status == "cleared" %}
+                                    <p><span class="badge bg-info">{{ details.status }}</span></p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <p class="text text-danger">Details not found.</p>
+                {% endif %}
+
+               </div>
+                <!--endcard info-->
+            
+            </div>
+
+           </div>
+        </div>
+      </div>
+      <!--row2 ends-->
+
+    </div><!--/. container-fluid -->
+  </section>
+  <!-- /.content -->
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

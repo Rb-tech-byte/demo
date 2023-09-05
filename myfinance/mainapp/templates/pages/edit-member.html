@@ -1,0 +1,102 @@
+{% extends 'pages/base.html' %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Update Group members</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Update Group members</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <!--messages-->
+      {% include 'message.html' %}
+      <!--messages-->
+      <!--row2 starts-->
+      <div class="row">
+        <div class="col-md-8">
+            <div class="alert alert-success p-2" style="opacity: .7">
+                <p>Update group member details</p>
+               </div>
+           <div class="card shadow">
+            <div class="card-header">
+                
+
+            </div>
+            <div class="card-body">
+     
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.first_name.id_for_label }}">First Name</label>
+                            {{ form.first_name }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+                            {{ form.last_name }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="{{ form.group_name.id_for_label }}">Group Name</label>
+                        {{ form.group_name }}
+                       </div>
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
+                            {{ form.phone_number }}
+                        </div>
+                        
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="{{ form.nida_number.id_for_label }}">NIDA Number</label>
+                        {{ form.nida_number }}
+                    </div>
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.address.id_for_label }}">Address</label>
+                            {{ form.address }}
+                        </div>
+ 
+                    </div>
+
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="{{ form.location.id_for_label }}">Location</label>
+                        {{ form.location }}
+                    </div>
+                      <div class="form-group col-md-6">
+                        <label for="{{ form.occupation.id_for_label }}">Occupation</label>
+                        {{ form.occupation }}
+                    </div>
+                  </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>     
+
+            </div>
+
+           </div>
+        </div>
+      </div>
+      <!--row2 ends-->
+
+    </div><!--/. container-fluid -->
+  </section>
+  <!-- /.content -->
+{% endblock %}

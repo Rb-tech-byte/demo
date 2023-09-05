@@ -1,0 +1,164 @@
+{% extends 'ceo/base.html' %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0"> <b>Referees Details</b></h1>
+          <div class="cont"></div>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{% url 'referee' %}">Referees</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <!--messages-->
+      {% include 'message.html' %}
+      <!--messages-->
+      <!--row2 starts-->
+      <div class="row">
+        <div class="col-md-12">
+           <div class="card shadow">
+            <div class="card-header">
+                
+
+            <!-- Button trigger modal -->
+            <div class="row">
+                <div class="col-md-9">
+
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+            Add Referees          
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Referee form</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.first_name.id_for_label }}">First Name</label>
+                            {{ form.first_name }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+                            {{ form.last_name }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
+                            {{ form.phone_number }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.nida_number.id_for_label }}">NIDA Number</label>
+                            {{ form.nida_number }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.address.id_for_label }}">Address</label>
+                            {{ form.address }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.location.id_for_label }}">Location</label>
+                            {{ form.location }}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>                
+                
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          </div>
+      </div>
+  <!--modal button-->
+
+            </div>
+            <div class="card-body">
+            <!--table-->
+            <table class="table table-borderd table-striped table-responsive" id="mytable">
+              <thead>
+                  <tr>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Phone Number</th>
+                      <th>Nida Number</th>
+                      <th>Address</th>
+                      <th>Location</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for ref in query %}
+                  <tr>
+                      <td>
+                          {{ref.first_name }}
+                      </td>
+
+                      <td>
+                          {{ref.last_name }}
+                      </td>
+
+                      <td>
+                          {{ref.phone_number }}
+                      </td>
+
+                      <td>
+                        {{ref.nida_number }}
+                      </td>
+
+                      <td>
+                       {{ref.address }}
+                      </td>
+
+                      <td>
+                       {{ref.location }}
+                     </td>
+
+                      <td style="display:flex;">
+                          <a onclick="return confirm('Are you sure you want to delete this referee?')" href="{% url 'delete_referee' ref.id %}" class="btn btn-danger mr-3">Delete</a>
+                          <a href="{% url 'edit_referee' ref.id %}" class="btn btn-info">Change</a>
+
+                      </td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+              </table>
+           <!--table ends-->
+            </div>
+
+           </div>
+        </div>
+      </div>
+      <!--row2 ends-->
+
+    </div><!--/. container-fluid -->
+  </section>
+  <!-- /.content -->
+{% endblock %}

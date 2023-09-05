@@ -1,0 +1,204 @@
+{% load static %}
+<html>
+<head>
+	<title>Kishery Microcredit Limited</title>
+	<link href="{% static 'assets/dist/img/log.png' %}" rel="icon">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- Font Awesome Icons -->
+	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+	
+	<!--animate.css link-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+	<!--endanimate.css-->
+
+
+	<style>
+body,
+html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	/* background-image: linear-gradient(to top, rgb(21, 26, 53), rgb(28, 48, 58)); */
+
+	/* background: #7abecc !important; */
+}
+/* @keyframes colorChange {
+  
+    90% {
+        background-color: #2d485a;
+    }
+    100% {
+        background-color: #2d485a;
+    }
+} */
+.user_card {
+	width: 400px;
+	margin-top: auto;
+	margin-bottom: auto;
+	background:#375b74;
+	/* background: linear-gradient(to top, #4aa6c2, #96d2f5); */
+	position: relative;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 10px;
+    border-radius:3px;
+}
+
+.form_container {
+	margin-top: 20px;
+}
+
+#form-title{
+	color: #fff;
+	
+}
+
+.login_btn {
+	width: 100%;
+	background: #f7ba5b !important;
+	color: white !important;
+}
+.login_btn:focus {
+	box-shadow: none !important;
+	outline: 0px !important;
+}
+.login_container {
+	padding: 0 0rem;
+}
+.input-group-text {
+	background: #f7ba5b !important;
+	color: white !important;
+	border: 0 !important;
+	border-radius: 0.25rem 0 0 0.25rem !important;
+}
+.input_user,
+.input_pass:focus {
+	box-shadow: none !important;
+	outline: 0px !important;
+}
+
+#messages{
+	background-color: grey;
+	color: #fff;
+	padding: 10px;
+	margin-top: 10px;
+}
+.header{
+	margin-top: 60px;
+	position: absolute;
+	margin-left: 8em;
+	font-weight: bold;
+	font-size: 35px;
+	color: #375b74;
+}
+@media screen and (max-width: 768px) {
+    .header {
+        font-size: 28px; /* Reduce font size for smaller screens */
+        margin-top: 10px; /* Further reduce top margin for smaller screens */
+        margin-left: 0; /* Remove left margin for smaller screens */
+    }
+}
+.login-page {
+background: url('static/assets/dist/img/back.png');
+background-repeat: no-repeat;
+height:600px;
+-webkit-background-size: cover !important;
+-moz-background-size: cover !important;
+-o-background-size: cover !important;
+background-size: cover !important;
+padding: 0;
+margin: 0;
+}
+.TogglePassword{
+	cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    /* Adjust form container width and padding for smaller screens */
+    .user_card {
+        width: 90%; /* Adjust the width as needed */
+        padding: 20px; /* Adjust the padding as needed */
+    }
+}
+.brand-image {
+            width: 100px;
+            height: 70px; /* Set the maximum width of the image */
+            border-radius: 5px; /* Add a border radius */
+            display: flex; /* Make the image a block element */
+            float:left;
+            margin-top:4%; /* Center align the image horizontally */
+            margin-left:2%;
+        }
+</style>
+
+</head>
+<body class="login-page">
+    <img src="{% static 'assets/dist/img/log.png' %}" alt="Logo" class="brand-image elevation-1" style="opacity: .8">
+
+	<div class="container h-100">
+        <div class="header center-title animate__animated animate__fadeInDown">
+           
+        KISHERY MICROCREDIT LIMITED			  
+        </div> 
+        
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card shadow">
+				<center>
+					{% for message in messages %}
+				<p class="text text-danger">{{ message }}</p>	
+					{% endfor %}
+					
+				</center>				
+				<div class="d-flex justify-content-center">
+					<h3 class="form-title animate__animated animate__fadeInDown" style="color:#ffffff;">USER LOGIN</h3>
+				</div>
+				<div class="d-flex justify-content-center form_container">
+					<form method="POST" action="">
+                        {% csrf_token %}
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+							<input type="text" name="username" placeholder="Username..." class="form-control">
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+								<input type="password" name="password" placeholder="Password..." class="form-control" id="password"> 
+
+						</div>
+						
+
+							<div class="d-flex justify-content-center mt-3 login_container">
+				 				<input class="btn login_btn" type="submit" value="Login">
+				   			</div>
+					</form>
+                    
+
+				</div>
+                
+		      <div class="msg">
+            
+          </div>
+				
+				</div>
+				
+			</div>
+		
+		</div>
+		<center>
+			<p style="color:rgb(255, 255, 255); font-size:18px;">@2023</p>
+		</center>
+		
+	</div>
+	
+
+</body>
+
+</html>

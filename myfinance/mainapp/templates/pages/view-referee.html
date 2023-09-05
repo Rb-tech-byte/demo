@@ -1,0 +1,107 @@
+{% extends 'pages/base.html' %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Referee Details</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Referee Details</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <!--messages-->
+      {% include 'message.html' %}
+      <!--messages-->
+      <!--row2 starts-->
+
+      <div class="alert alert-success p-2" style="opacity: .7">
+        <p>Referee Details</p>
+       </div>
+      <div class="row">
+        <div class="col-md-12">
+            
+           <div class="card shadow">
+            <div class="card-header">
+                
+
+            </div>
+            <div class="card-body">
+                  
+                <!--card info-->
+                <h4 class="text text-white bg-secondary p-2"> <b>Referee details</b> </h4>
+               
+                {% if details %}
+                <div class="container">
+                    <div class="card">
+                        <div class="card-body p-2">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p><b>First Name:</b> {{ details.first_name }}</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <p><b>Last Name:</b> {{ details.last_name }}</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <p><b>Phone Number:</b> {{ details.phone_number }}</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <p><b>NIDA Number:</b> {{ details.nida_number }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p><b>Address:</b> {{ details.address }}</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <p><b>Location:</b> {{ details.location }}</p>
+                                </div>
+                                
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <p class="text text-danger">Details not found.</p>
+                {% endif %}
+
+               </div>
+                <!--endcard info-->
+            
+            </div>
+
+           </div>
+        </div>
+      </div>
+      <!--row2 ends-->
+
+    </div><!--/. container-fluid -->
+  </section>
+  <!-- /.content -->
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,196 @@
+{% extends 'ceo/base.html' %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0"><b>Group loan</b></h1>
+          <div class="cont"></div>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Group loan</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <!--messages-->
+      {% include 'message.html' %}
+      <!--messages-->
+      <!--row2 starts-->
+      <div class="row">
+        <div class="col-md-12">
+           <div class="card shadow">
+            <div class="card-header">
+                
+
+            <!-- Button trigger modal -->
+            <div class="row">
+                <div class="col-md-9">
+
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+            Add Lender details        
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Group lending form</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="{{ form.branch.id_for_label }}">Branch</label>
+                                {{ form.branch }}
+                                {{ form.branch.errors }}
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="{{ form.group_name.id_for_label }}">Group Name</label>
+                                {{ form.group_name }}
+                                {{ form.group_name.errors }}
+                            </div>
+                           
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
+                                {{ form.phone_number }}
+                                {{ form.phone_number.errors }}
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="{{ form.referee.id_for_label }}">Referees</label>
+                                {{ form.referee }}
+                                {{ form.referee.errors }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="{{ form.members.id_for_label }}">Members</label>
+                                {{ form.members }}
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="{{ form.amount.id_for_label }}">Amount</label>
+                                {{ form.amount }}
+                            </div>
+                        </div>
+                        <div class="form-row">   
+                            <div class="form-group col-md-6">
+                                <label for="{{ form.returned_amount.id_for_label }}">Returned Amount</label>
+                                {{ form.returned_amount }}
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="{{ form.interest.id_for_label }}">Interest</label>
+                                {{ form.interest }}
+                            </div>
+                        </div>
+    
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                              <label for="{{ form.lending_date.id_for_label }}">Lending Date</label>
+                              {{ form.lending_date }}
+                          </div>
+                          <div class="form-group col-md-6">
+                              <label for="{{ form.date_of_return.id_for_label }}">Return Date</label>
+                              {{ form.date_of_return }}
+                          </div>
+                      </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          </div>
+      </div>
+  <!--modal button-->
+
+            </div>
+            <div class="card-body">
+            <!--table-->
+            <table class="table table-borderd table-striped table-responsive" id="mytable">
+              <thead>
+                  <tr>
+                     
+                      <th>Group Name</th>
+                      <th>Amount</th>
+                      <th>Returned Amount</th>
+                      <th>Interest</th>
+                      <th>Lending Date</th>
+                      <th>Return Date</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for entry in query %}
+                  <tr>
+                   
+                    
+                      <td>{{ entry.group_name }}</td>
+                      <td>Tsh {{ entry.amount }}</td>
+                      <td>Tsh {{ entry.returned_amount }}</td>
+                      <td>Tsh {{ entry.interest }}</td>
+                      <td>{{ entry.lending_date }}</td>
+                      <td>{{ entry.date_of_return }}</td>
+                      <td>
+                        {% if entry.status == 'pending' %}
+                            <span class="badge badge-warning">{{ entry.get_status_display }}</span>
+                        {% elif entry.status == 'approved' %}
+                            <span class="badge badge-success">{{ entry.get_status_display }}</span>
+                        {% elif entry.status == 'rejected' %}
+                            <span class="badge badge-danger">{{ entry.get_status_display }}</span>
+                        {% elif entry.status == 'cleared' %}
+                            <span class="badge badge-info">{{ entry.get_status_display }}</span>
+                        {% endif %}
+                    </td>
+
+
+                    <td style="display:flex;">
+                      <a onclick="return confirm('Are you sure you want to delete this referee?')" href="{% url 'delete_groups' entry.id %}" class="btn btn-danger mr-3">Delete</a>
+                      <a href="{% url 'group_lending_edit' entry.id %}" class="btn btn-info">Edit</a>
+                      <a href="{% url 'return_loan' %}?update_id={{ entry.id }}" class="btn btn-warning ml-3">Returns</a>
+                      <a href="{% url 'edit_app' entry.id %}" class="btn btn-success ml-3">Status</a>
+                      <a href="{% url 'view_group_loan' entry.id %}" class="btn btn-secondary ml-3">View</a>
+
+                  </td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+      
+        
+           <!--table ends-->
+            </div>
+
+           </div>
+        </div>
+      </div>
+      <!--row2 ends-->
+
+    </div><!--/. container-fluid -->
+  </section>
+  <!-- /.content -->
+  
+{% endblock %}

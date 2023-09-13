@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-zjv1!z$8lf&$6ox3o1z09an0(q+x6x@twj2f+hnm!&^uf)qgs%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['13.234.150.11'] 
+ALLOWED_HOSTS = ['kisherymicrocredit.co.tz','www.kisherymicrocredit.co.tz'] 
 
 # Application definition
 
@@ -81,7 +81,7 @@ DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.mysql',
         'NAME':'finance',
-        'USER':'credit',
+        'USER':'finance',
         'PASSWORD':'1234567890',
         'HOST':'localhost',
         'PORT':'3306',
